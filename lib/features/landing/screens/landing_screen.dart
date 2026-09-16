@@ -242,10 +242,10 @@ class LandingScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           'Río de Janeiro con amigos 🌴',
                           style: TextStyle(
                             fontSize: 20,
@@ -253,7 +253,7 @@ class LandingScreen extends StatelessWidget {
                             color: AppColors.textPrimary,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4),
                         Text(
                           '14 Ene - 21 Ene 2027 • 4 viajeros • Presupuesto \$3,200 USD',
                           style: TextStyle(fontSize: 13, color: AppColors.textSecondary),

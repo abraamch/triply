@@ -82,10 +82,10 @@ class _TripDashboardScreenState extends ConsumerState<TripDashboardScreen> {
               ),
               child: Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Text(
                       'https://triply.app/invite?token=triply-rio-2027',
-                      style: const TextStyle(color: AppColors.primaryLight, fontSize: 13),
+                      style: TextStyle(color: AppColors.primaryLight, fontSize: 13),
                     ),
                   ),
                   IconButton(
