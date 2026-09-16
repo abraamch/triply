@@ -301,7 +301,7 @@ class _CreateTripScreenState extends ConsumerState<CreateTripScreen> {
                             ),
                             const SizedBox(height: 8),
                             DropdownButtonFormField<String>(
-                              value: _selectedCurrency,
+                              initialValue: _selectedCurrency,
                               dropdownColor: AppColors.surface,
                               decoration: const InputDecoration(),
                               items: ['USD', 'EUR', 'ARS', 'BRL', 'MXN'].map((c) {
@@ -378,7 +378,7 @@ class _CreateTripScreenState extends ConsumerState<CreateTripScreen> {
                       return FilterChip(
                         label: Text(pref),
                         selected: isSelected,
-                        selectedColor: AppColors.primary.withOpacity(0.2),
+                        selectedColor: AppColors.primary.withValues(alpha: 0.2),
                         checkmarkColor: AppColors.primary,
                         backgroundColor: AppColors.surface,
                         labelStyle: TextStyle(
@@ -417,7 +417,7 @@ class _CreateTripScreenState extends ConsumerState<CreateTripScreen> {
                             child: Container(
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               decoration: BoxDecoration(
-                                color: isSelected ? AppColors.primary.withOpacity(0.15) : AppColors.surface,
+                                color: isSelected ? AppColors.primary.withValues(alpha: 0.15) : AppColors.surface,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
                                   color: isSelected ? AppColors.primary : AppColors.surfaceLight,

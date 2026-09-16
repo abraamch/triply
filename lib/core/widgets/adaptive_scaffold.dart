@@ -249,7 +249,7 @@ class AdaptiveScaffold extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             tileColor: isSelected
-                                ? AppColors.primary.withOpacity(0.12)
+                                ? AppColors.primary.withValues(alpha: 0.12)
                                 : Colors.transparent,
                             leading: Icon(
                               isSelected ? item.selectedIcon : item.icon,

@@ -53,7 +53,8 @@ class AppTheme {
           color: AppColors.textSecondary,
         ),
       ),
-      cardTheme: CardTheme(
+      // Fix: CardTheme → CardThemeData (Flutter 3.x Material3)
+      cardTheme: CardThemeData(
         color: AppColors.surface,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -110,7 +111,8 @@ class AppTheme {
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: AppColors.surface,
-        indicatorColor: AppColors.primary.withOpacity(0.15),
+        // Fix: withOpacity → withValues()
+        indicatorColor: AppColors.primary.withValues(alpha: 0.15),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
             return GoogleFonts.plusJakartaSans(

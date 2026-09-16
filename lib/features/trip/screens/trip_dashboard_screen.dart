@@ -85,7 +85,7 @@ class _TripDashboardScreenState extends ConsumerState<TripDashboardScreen> {
                   Expanded(
                     child: Text(
                       'https://triply.app/invite?token=triply-rio-2027',
-                      style: TextStyle(color: AppColors.primaryLight, fontSize: 13),
+                      style: const TextStyle(color: AppColors.primaryLight, fontSize: 13),
                     ),
                   ),
                   IconButton(
@@ -257,7 +257,7 @@ class _TripDashboardScreenState extends ConsumerState<TripDashboardScreen> {
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        AppColors.background.withOpacity(0.85),
+                        AppColors.background.withValues(alpha: 0.85),
                         AppColors.background,
                       ],
                     ),
@@ -326,7 +326,7 @@ class _TripDashboardScreenState extends ConsumerState<TripDashboardScreen> {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.primary.withOpacity(0.3),
+                          color: AppColors.primary.withValues(alpha: 0.3),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),
@@ -385,7 +385,7 @@ class _TripDashboardScreenState extends ConsumerState<TripDashboardScreen> {
                     return Row(
                       children: [
                         CircleAvatar(
-                          backgroundColor: AppColors.primary.withOpacity(0.2),
+                          backgroundColor: AppColors.primary.withValues(alpha: 0.2),
                           foregroundColor: AppColors.primary,
                           child: Text(
                             member.fullName.substring(0, 1).toUpperCase(),
@@ -429,14 +429,14 @@ class _TripDashboardScreenState extends ConsumerState<TripDashboardScreen> {
                 decoration: BoxDecoration(
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.primary.withOpacity(0.3)),
+                  border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   children: [
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.15),
+                        color: AppColors.primary.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(Icons.flight_takeoff, color: AppColors.primary, size: 24),
