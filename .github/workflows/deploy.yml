@@ -1,21 +1,36 @@
-name: Triply CI/CD Cloud Build
+name: Triply CI/CD – Build & Deploy
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
+# Permisos necesarios para publicar en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Solo un deploy a la vez
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build-and-test:
-    name: Test & Build Flutter Web & Android
+  build-and-deploy:
+    name: Build Flutter Web & Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Java (for Android build)
+      - name: Setup Java (requerido por el SDK de Flutter)
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
@@ -30,17 +45,20 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Run Static Analysis (Linter)
+      - name: Run Static Analysis
         run: flutter analyze
 
       - name: Run Unit Tests
         run: flutter test --no-pub
 
       - name: Build Flutter Web
-        run: flutter build web --release
+        run: flutter build web --release --base-href "/triply/"
 
-      - name: Upload Web Build Artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload artifact para GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: triply-web-release
           path: build/web
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
