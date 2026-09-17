@@ -118,7 +118,19 @@ class _CreateTripScreenState extends ConsumerState<CreateTripScreen> {
         );
 
     if (created != null && mounted) {
+      // En modo demo el repositorio puede devolver el demo trip directamente
       context.go('/trip/${created.id}');
+    } else if (mounted) {
+      // Fallback: si no se pudo crear, muestra snackbar de error
+      final tripState = ref.read(tripFormControllerProvider);
+      if (tripState.errorMessage != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(tripState.errorMessage!),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
     }
   }
 

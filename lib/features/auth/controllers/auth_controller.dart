@@ -31,10 +31,11 @@ class AuthState {
     bool? isLoading,
     String? errorMessage,
     UserProfile? user,
+    bool clearError = false,
   }) {
     return AuthState(
       isLoading: isLoading ?? this.isLoading,
-      errorMessage: errorMessage,
+      errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
       user: user ?? this.user,
     );
   }
@@ -46,7 +47,7 @@ class AuthController extends StateNotifier<AuthState> {
   AuthController(this._repository) : super(const AuthState());
 
   Future<bool> login(String email, String password) async {
-    state = state.copyWith(isLoading: true, errorMessage: null);
+    state = state.copyWith(isLoading: true, clearError: true);
     try {
       final user = await _repository.signInWithEmailPassword(email, password);
       state = state.copyWith(isLoading: false, user: user);
@@ -61,7 +62,7 @@ class AuthController extends StateNotifier<AuthState> {
   }
 
   Future<bool> register(String email, String password, String fullName) async {
-    state = state.copyWith(isLoading: true, errorMessage: null);
+    state = state.copyWith(isLoading: true, clearError: true);
     try {
       final user = await _repository.signUpWithEmailPassword(email, password, fullName);
       state = state.copyWith(isLoading: false, user: user);
@@ -76,7 +77,7 @@ class AuthController extends StateNotifier<AuthState> {
   }
 
   Future<void> signInWithGoogle() async {
-    state = state.copyWith(isLoading: true, errorMessage: null);
+    state = state.copyWith(isLoading: true, clearError: true);
     try {
       await _repository.signInWithGoogle();
       state = state.copyWith(isLoading: false);
