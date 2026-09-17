@@ -122,7 +122,10 @@ class SupabaseAuthRepository implements IAuthRepository {
   @override
   Future<void> signInWithGoogle() async {
     if (!Env.isConfigured) return;
-    await _client.auth.signInWithOAuth(OAuthProvider.google);
+    await _client.auth.signInWithOAuth(
+      OAuthProvider.google,
+      redirectTo: 'https://abraamch.github.io/triply/',
+    );
   }
 
   @override
